@@ -31,11 +31,11 @@ Motor::Motor(int In1pin, int In2pin, int PWMpin, int offset, int STBYpin, int fr
 
   pinMode(In1, OUTPUT);
   pinMode(In2, OUTPUT);
-  pinMode(PWM, OUTPUT);
+  pinMode(PWMpin, OUTPUT);
   pinMode(Standby, OUTPUT);
 
-  ledcSetup(PWM, freq, resolution);
-  ledcAttachPin(PWM, channel);
+  ledcSetup(PWMpin, freq, resolution);
+  ledcAttachPin(PWMpin, channel);
 
 }
 
