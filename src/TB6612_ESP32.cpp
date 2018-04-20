@@ -1,41 +1,26 @@
 /******************************************************************************
-TB6612.cpp
-TB6612FNG H-Bridge Motor Driver Example code
-Michelle @ SparkFun Electronics
-8/20/16
-https://github.com/sparkfun/SparkFun_TB6612FNG_Arduino_Library
 
-Uses 2 motors to show examples of the functions in the library.  This causes
-a robot to do a little 'jig'.  Each movement has an equal and opposite movement
-so assuming your motors are balanced the bot should end up at the same place it
-started.
-
-Resources:
-TB6612 SparkFun Library
-
-Development environment specifics:
-Developed on Arduino 1.6.4
-Developed with ROB-9457
 ******************************************************************************/
 
 #include "TB6612_ESP32.h"
 #include <Arduino.h>
 #include <driver/ledc.h>
-Motor::Motor(int In1pin, int In2pin, int PWMpin, int offset, int STBYpin, int freq, int resolution, int channel)
+Motor::Motor(int In1pin, int In2pin, int PWMpin, int offset, int STBYpin, int freq, int resolution, int channel_pin)
 {
   In1 = In1pin;
   In2 = In2pin;
   PWM = PWMpin;
   Standby = STBYpin;
   Offset = offset;
+  Channel=channel_pin;
 
   pinMode(In1, OUTPUT);
   pinMode(In2, OUTPUT);
   pinMode(PWMpin, OUTPUT);
   pinMode(Standby, OUTPUT);
 
-  ledcSetup(PWMpin, freq, resolution);
-  ledcAttachPin(PWMpin, channel);
+  ledcSetup(Channel, freq, resolution);
+  ledcAttachPin(PWM, Channel);
 
 }
 
@@ -56,7 +41,7 @@ void Motor::fwd(int speed)
 {
    digitalWrite(In1, HIGH);
    digitalWrite(In2, LOW);
-   ledcWrite(PWM, speed);
+   ledcWrite(Channel, speed);
 
 }
 
@@ -64,14 +49,14 @@ void Motor::rev(int speed)
 {
    digitalWrite(In1, LOW);
    digitalWrite(In2, HIGH);
-   ledcWrite(PWM, speed);
+   ledcWrite(Channel, speed);
 }
 
 void Motor::brake()
 {
    digitalWrite(In1, HIGH);
    digitalWrite(In2, HIGH);
-   ledcWrite(PWM, 0);
+   ledcWrite(Channel, 0);
 }
 
 void Motor::standby()

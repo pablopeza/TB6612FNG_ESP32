@@ -7,8 +7,8 @@
 #define BIN1 7
 #define AIN2 4
 #define BIN2 8
-#define PWMA 5
-#define PWMB 6
+#define PWMA T0
+#define PWMB T2
 #define STBY 9
 
 
@@ -24,18 +24,11 @@ Motor motor2 = Motor(BIN1, BIN2, PWMB, offsetB, STBY,5000 ,8,2 );
 // motors as you have memory for.  If you are using functions like forward
 // that take 2 motors as arguements you can either write new functions or
 // call the function more than once.
-//int freq = 5000;
-int ledChannel = 2;
-//int resolution = 8;
-
-///Motor motor1 = Motor(AIN1, AIN2, PWMA, offsetA, STBY);
-//Motor motor2 = Motor(BIN1, BIN2, PWMB, offsetB, STBY);
 
 
 void setup()
 {
-  //ledcSetup(ledChannel, freq, resolution);
-  //ledcAttachPin(LED_BUILTIN, ledChannel);
+
 }
 
 void loop()
@@ -89,15 +82,4 @@ void loop()
      brake(motor1, motor2);
      delay(1000);
 
-
-/*  for (int dutyCycle = 0; dutyCycle <= 1020; dutyCycle++){
-ledcWrite(ledChannel, dutyCycle);
-delay(7);
-}
-
-for (int dutyCycle = 255; dutyCycle >= 0; dutyCycle--){
-     ledcWrite(ledChannel, dutyCycle);
-     delay(7);
-  }
-  //forward(motor1, motor2, 150);  */                 // wait for a second
 }
