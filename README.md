@@ -122,7 +122,7 @@ https://github.com/vincasmiliunas/ESP32-Arduino-TB6612FNG
 
 ## Contact Information
 
-For questions or support, feel free to reach out to the project maintainers via GitHub issues or directly contact **pablopeza** at [pablopeza@domain.com](mailto:pablopeza@domain.com).
+For questions or support, feel free to reach out to the project maintainers via GitHub issues.
 
 ## Contributors / Thanks
 https://github.com/ellensp
